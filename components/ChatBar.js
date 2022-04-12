@@ -28,7 +28,9 @@ const ChatBar = ({ id, user }) => {
   return (
     <FormControl p={3} onSubmit={sendMessage} as="form">
       <InputGroup>
-        <InputLeftElement children={<FaRegSmile />} />
+        <InputLeftElement pointerEvents="none">
+          <FaRegSmile />
+        </InputLeftElement>
         <Input
           bg="white"
           placeholder="Message"
@@ -36,7 +38,9 @@ const ChatBar = ({ id, user }) => {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
-        <InputRightElement children={<FaCamera />} />
+        <InputRightElement pointerEvents="none">
+          <FaCamera />
+        </InputRightElement>
       </InputGroup>
 
       <Button type="submit" hidden>
