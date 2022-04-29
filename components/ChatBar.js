@@ -17,12 +17,16 @@ const ChatBar = ({ id, user }) => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    await addDoc(collection(db, `chats/${id}/messages`), {
-      text: input,
-      sender: user.email,
-      timestamp: serverTimestamp(),
-    });
-    setInput("");
+    try {
+      await addDoc(collection(db, `chats/${id}/messages`), {
+        text: input,
+        sender: user.email,
+        timestamp: serverTimestamp(),
+      });
+      setInput("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

@@ -60,7 +60,7 @@ const Chat = () => {
       </Head>
 
       <Flex flex={1} direction="column" className="chat-container">
-        <TopBar email={getRecipient(chat?.users, user)} />
+        <TopBar id={id} email={getRecipient(chat?.users, user)} />
 
         <Flex
           flex={1}
