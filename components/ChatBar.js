@@ -12,7 +12,7 @@ import { FaRegSmile, FaCamera } from "react-icons/fa";
 
 import { db } from "../firebaseconfig";
 
-const ChatBar = ({ id, user }) => {
+export default function ChatBar({ id, user }) {
   const [input, setInput] = useState("");
 
   const sendMessage = async (e) => {
@@ -52,6 +52,4 @@ const ChatBar = ({ id, user }) => {
       </Button>
     </FormControl>
   );
-};
-
-export default ChatBar;
+}

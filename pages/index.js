@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Chat from "../components/Chat";
 
-const Home = () => {
+export default function Home() {
   return (
     <div>
       <Box h="100vh">
@@ -11,6 +11,4 @@ const Home = () => {
       </Box>
     </div>
   );
-};
-
-export default Home;
+}

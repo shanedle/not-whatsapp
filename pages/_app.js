@@ -7,7 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "../components/Login";
 import { auth } from "../firebaseconfig";
 
-const MyApp = ({ Component, pageProps }) => {
+export default function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
 
   if (error) {
@@ -49,6 +49,4 @@ const MyApp = ({ Component, pageProps }) => {
       </ChakraProvider>
     </>
   );
-};
-
-export default MyApp;
+}

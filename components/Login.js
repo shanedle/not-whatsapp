@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 import { auth } from "../firebaseconfig";
 
-const Login = () => {
+export default function Login() {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   if (error) {
@@ -15,6 +15,7 @@ const Login = () => {
       </div>
     );
   }
+
   if (loading) {
     return (
       <Center h="100vh">
@@ -22,6 +23,7 @@ const Login = () => {
       </Center>
     );
   }
+
   if (user) {
     return (
       <div>
@@ -57,6 +59,4 @@ const Login = () => {
       </Center>
     </>
   );
-};
-
-export default Login;
+}

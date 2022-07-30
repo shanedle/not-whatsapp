@@ -13,7 +13,7 @@ import TopBar from "../../components/TopBar";
 import ChatBar from "../../components/ChatBar";
 import { useRef, useEffect } from "react";
 
-const Chat = () => {
+export default function Chat() {
   const router = useRouter();
   const { id } = router.query;
   const [user] = useAuthState(auth);
@@ -78,6 +78,4 @@ const Chat = () => {
       </Flex>
     </Flex>
   );
-};
-
-export default Chat;
+}

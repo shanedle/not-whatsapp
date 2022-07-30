@@ -2,20 +2,50 @@ import { useRouter } from "next/router";
 import { collection, addDoc } from "@firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { Center, Avatar, Button, Flex, Text, Spinner } from "@chakra-ui/react";
+import {
+  Center,
+  Avatar,
+  Button,
+  Flex,
+  Text,
+  Spinner,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  Input,
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
 import { auth } from "../firebaseconfig";
 import { db } from "../firebaseconfig";
 
 import getRecipient from "../utils/getRecipient";
 
-const Chat = () => {
+export default function Chat() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { handleSubmit, register } = useForm();
+
   const router = useRouter();
 
   const [user] = useAuthState(auth);
 
   const [snapshot, loading, error] = useCollection(collection(db, "chats"));
   const chats = snapshot?.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -34,15 +64,15 @@ const Chat = () => {
       (chat) => chat.users.includes(user.email) && chat.users.includes(email)
     );
 
-  const newChat = async () => {
-    const input = prompt("Enter the email of the recipient.");
+  const submitHandler = handleSubmit(async (value) => {
+    let data = value.email;
 
-    if (input != null && input.length > 0) {
-      if (!chatExists(input) && input !== user.email) {
-        await addDoc(collection(db, "chats"), { users: [user.email, input] });
+    if (data != null && data.length > 0) {
+      if (!chatExists(data) && data !== user.email) {
+        await addDoc(collection(db, "chats"), { users: [user.email, data] });
       }
     }
-  };
+  });
 
   const chatList = () => {
     return chats
@@ -77,11 +107,32 @@ const Chat = () => {
         {chatList()}
       </Flex>
 
-      <Button m={3} p={3} onClick={() => newChat()}>
-        Start a chat
-      </Button>
+      <Button onClick={onOpen}> Start a chat</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent as="form" onSubmit={submitHandler}>
+          <ModalHeader>Enter the email of the recipient</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <Input
+                type="email"
+                placeholder="example@email.com"
+                name="email"
+                {...register("email", { required: true })}
+              />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button type="submit" colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
-};
-
-export default Chat;
+}
