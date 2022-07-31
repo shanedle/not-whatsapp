@@ -64,13 +64,12 @@ export default function Chat() {
       (chat) => chat.users.includes(user.email) && chat.users.includes(email)
     );
 
-  const submitHandler = handleSubmit(async (value) => {
-    let data = value.email;
-
-    if (data != null && data.length > 0) {
-      if (!chatExists(data) && data !== user.email) {
-        await addDoc(collection(db, "chats"), { users: [user.email, data] });
+  const submitHandler = handleSubmit(async ({ email }) => {
+    if (email != null && email.length > 0) {
+      if (!chatExists(email) && email !== user.email) {
+        await addDoc(collection(db, "chats"), { users: [user.email, email] });
       }
+      onClose();
     }
   });
 
