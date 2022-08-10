@@ -1,6 +1,10 @@
 {
   "name": "not-whatsapp",
   "private": true,
+  "engines": {
+    "node": "14.17.1",
+    "npm": "6.14.13"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
