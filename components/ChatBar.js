@@ -15,6 +15,7 @@ import { db } from "../firebaseconfig";
 const Picker = dynamic(() => import("emoji-picker-react"), {
   ssr: false,
 });
+
 export default function ChatBar({ id, user }) {
   const [input, setInput] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
