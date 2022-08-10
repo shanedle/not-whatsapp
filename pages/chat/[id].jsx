@@ -1,17 +1,19 @@
-import { Flex, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useRef, useEffect } from "react";
+
 import {
   useCollectionData,
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, doc, orderBy, query } from "firebase/firestore";
+import { Flex, Text } from "@chakra-ui/react";
+
 import { db, auth } from "../../firebaseconfig";
 import getRecipient from "../../utils/getRecipient";
 import TopBar from "../../components/TopBar";
 import ChatBar from "../../components/ChatBar";
-import { useRef, useEffect } from "react";
 
 export default function Chat() {
   const router = useRouter();
