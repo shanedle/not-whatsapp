@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
+  useColorMode,
   Avatar,
   Box,
   Flex,
@@ -18,6 +19,8 @@ import { auth } from "../firebaseconfig";
 
 export default function UserProfile() {
   const [user] = useAuthState(auth);
+
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <HStack spacing={{ base: "0", md: "6" }}>
@@ -44,6 +47,9 @@ export default function UserProfile() {
             </HStack>
           </MenuButton>
           <MenuList fontSize="lg" bg="teal.600">
+            <MenuItem onClick={toggleColorMode}>
+              Toggle {colorMode === "light" ? "Dark" : "Light"}
+            </MenuItem>
             <MenuItem onClick={() => signOut(auth)}>Sign Out</MenuItem>
           </MenuList>
         </Menu>
