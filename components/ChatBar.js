@@ -18,7 +18,7 @@ export default function ChatBar({ id, user }) {
   const [input, setInput] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
 
-  const onEmojiClick = (event, emojiObject) => {
+  const onEmojiClick = (e, emojiObject) => {
     setInput(input + emojiObject.emoji);
   };
 
