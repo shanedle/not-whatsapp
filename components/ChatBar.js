@@ -12,8 +12,9 @@ import {
 import { FaRegSmile, FaCamera } from "react-icons/fa";
 import { db } from "../firebaseconfig";
 
-const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
-
+const Picker = dynamic(() => import("emoji-picker-react"), {
+  ssr: false,
+});
 export default function ChatBar({ id, user }) {
   const [input, setInput] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
