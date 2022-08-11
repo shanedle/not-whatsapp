@@ -22,10 +22,10 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
-import { auth } from "../firebaseconfig";
-import { db } from "../firebaseconfig";
+import { auth } from "../../firebaseconfig";
+import { db } from "../../firebaseconfig";
 
-import getRecipient from "../utils/getRecipient";
+import getRecipient from "../../utils/getRecipient";
 
 export default function Chat() {
   const { isOpen, onOpen, onClose } = useDisclosure();

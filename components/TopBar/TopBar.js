@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { FaArrowLeft, FaTrashAlt } from "react-icons/fa";
 
-import { db } from "../firebaseconfig";
+import { db } from "../../firebaseconfig";
 
 export default function TopBar({ id, email }) {
   const router = useRouter();

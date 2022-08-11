@@ -10,7 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { FaRegSmile, FaCamera } from "react-icons/fa";
-import { db } from "../firebaseconfig";
+import { db } from "../../firebaseconfig";
 
 const Picker = dynamic(() => import("emoji-picker-react"), {
   ssr: false,
@@ -27,12 +27,14 @@ export default function ChatBar({ id, user }) {
   const sendMessage = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, `chats/${id}/messages`), {
-        text: input,
-        sender: user.email,
-        timestamp: serverTimestamp(),
-      });
-      setInput("");
+      if (input != null && input.length > 0) {
+        await addDoc(collection(db, `chats/${id}/messages`), {
+          text: input,
+          sender: user.email,
+          timestamp: serverTimestamp(),
+        });
+        setInput("");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -41,6 +43,18 @@ export default function ChatBar({ id, user }) {
 
   return (
     <FormControl p={3} onSubmit={sendMessage} as="form">
+      {showEmoji && (
+        <Picker
+          onEmojiClick={onEmojiClick}
+          pickerStyle={{
+            width: "20%",
+            display: "relative",
+            left: "0",
+            bottom: "10px",
+            backgroundColor: "#fff",
+          }}
+        />
+      )}
       <InputGroup>
         <InputLeftElement>
           <FaRegSmile onClick={() => setShowEmoji(!showEmoji)} />
@@ -52,6 +66,7 @@ export default function ChatBar({ id, user }) {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
+
         <InputRightElement pointerEvents="none">
           <FaCamera />
         </InputRightElement>
@@ -59,18 +74,6 @@ export default function ChatBar({ id, user }) {
       <Button type="submit" hidden>
         Submit
       </Button>
-      {showEmoji && (
-        <Picker
-          onEmojiClick={onEmojiClick}
-          pickerStyle={{
-            width: "20%",
-            display: "absolute",
-            left: "0",
-            bottom: "270px",
-            backgroundColor: "#fff",
-          }}
-        />
-      )}
     </FormControl>
   );
 }

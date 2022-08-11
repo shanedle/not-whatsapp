@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import UserProfile from "./UserProfile";
+import UserProfile from "../UserProfile/UserProfile";
 
 export default function Header() {
   return (

@@ -3,7 +3,7 @@ import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Spinner, Button, Center, Stack } from "@chakra-ui/react";
 import { FaWhatsapp } from "react-icons/fa";
 
-import { auth } from "../firebaseconfig";
+import { auth } from "../../firebaseconfig";
 
 export default function Login() {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);

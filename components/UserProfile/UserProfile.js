@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
-import { auth } from "../firebaseconfig";
+import { auth } from "../../firebaseconfig";
 
 export default function UserProfile() {
   const [user] = useAuthState(auth);

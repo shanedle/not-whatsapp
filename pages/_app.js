@@ -4,7 +4,7 @@ import Head from "next/head";
 import { ChakraProvider, Spinner, Center } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import Login from "../components/Login";
+import Login from "../components/Login/Login";
 import { auth } from "../firebaseconfig";
 
 export default function MyApp({ Component, pageProps }) {
