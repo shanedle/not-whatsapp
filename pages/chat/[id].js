@@ -67,7 +67,7 @@ export default function Chat() {
         <Flex
           flex={1}
           direction="column"
-          pt={4}
+          pt={5}
           mx={5}
           overflowX="scroll"
           sx={{ scrollbarWidth: "none" }}
@@ -76,7 +76,9 @@ export default function Chat() {
           <div ref={bottomOfChat}></div>
         </Flex>
 
-        <ChatBar id={id} user={user} />
+        <Flex flex={1}>
+          <ChatBar id={id} user={user} />
+        </Flex>
       </Flex>
     </Flex>
   );

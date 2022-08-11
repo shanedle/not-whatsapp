@@ -28,12 +28,14 @@ export default function ChatBar({ id, user }) {
     e.preventDefault();
     try {
       if (input != null && input.length > 0) {
-        await addDoc(collection(db, `chats/${id}/messages`), {
-          text: input,
-          sender: user.email,
-          timestamp: serverTimestamp(),
-        });
-        setInput("");
+        if (/\S/.test(input)) {
+          await addDoc(collection(db, `chats/${id}/messages`), {
+            text: input,
+            sender: user.email,
+            timestamp: serverTimestamp(),
+          });
+          setInput("");
+        }
       }
     } catch (err) {
       console.log(err);
@@ -42,16 +44,23 @@ export default function ChatBar({ id, user }) {
   };
 
   return (
-    <FormControl p={3} onSubmit={sendMessage} as="form">
+    <FormControl
+      pos="absolute"
+      bottom="0"
+      left="0"
+      p={3}
+      onSubmit={sendMessage}
+      as="form"
+    >
       {showEmoji && (
         <Picker
           onEmojiClick={onEmojiClick}
           pickerStyle={{
-            width: "20%",
             display: "relative",
             left: "0",
             bottom: "10px",
             backgroundColor: "#fff",
+            zIndex: "10",
           }}
         />
       )}
