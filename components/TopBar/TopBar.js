@@ -38,7 +38,9 @@ export default function TopBar({ id, email }) {
   return (
     <Flex bg="teal.600" h="10%" w="100%" align="center" p={5}>
       <Link href="/" passHref>
-        <FaArrowLeft cursor="pointer" size="1.5em" color="white" />
+        <a>
+          <FaArrowLeft cursor="pointer" size="1.5em" color="white" />
+        </a>
       </Link>
       <Avatar src="" marginEnd={3} ml={5} />
       <Heading size="md" color="white">
