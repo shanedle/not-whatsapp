@@ -19,6 +19,7 @@ import {
   ModalCloseButton,
   FormControl,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
@@ -38,6 +39,8 @@ export default function Chat() {
 
   const [snapshot, loading, error] = useCollection(collection(db, "chats"));
   const chats = snapshot?.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+  const toast = useToast();
 
   if (error) {
     return (
@@ -70,6 +73,13 @@ export default function Chat() {
         await addDoc(collection(db, "chats"), { users: [user.email, email] });
       }
       onClose();
+      toast({
+        title: `${email} added.`,
+        description: "Email added successfully.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
     }
   });
 
