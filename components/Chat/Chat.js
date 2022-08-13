@@ -71,15 +71,31 @@ export default function Chat() {
     if (email != null && email.length > 0) {
       if (!chatExists(email) && email !== user.email) {
         await addDoc(collection(db, "chats"), { users: [user.email, email] });
+        toast({
+          title: `${email} added.`,
+          description: "Email added successfully.",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+      } else if (chatExists(email) && email !== user.email) {
+        toast({
+          title: `${email} already exist.`,
+          description: "Please enter a different email.",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "You can't add your own email!",
+          description: "Please enter a different email.",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
       }
       onClose();
-      toast({
-        title: `${email} added.`,
-        description: "Email added successfully.",
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
     }
   });
 
