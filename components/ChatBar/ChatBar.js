@@ -49,6 +49,7 @@ export default function ChatBar({ id, user }) {
       bottom="0"
       left="0"
       p={3}
+      color="black"
       onSubmit={sendMessage}
       as="form"
     >
@@ -69,9 +70,10 @@ export default function ChatBar({ id, user }) {
           <FaRegSmile onClick={() => setShowEmoji(!showEmoji)} />
         </InputLeftElement>
         <Input
-          bg="white"
           placeholder="Message"
           autoComplete="off"
+          bg="white"
+          _placeholder={{ color: "black" }}
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
