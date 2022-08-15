@@ -67,33 +67,33 @@ export default function Chat() {
       (chat) => chat.users.includes(user.email) && chat.users.includes(email)
     );
 
+  const resultToast = (status, title, description) => {
+    return toast({
+      title,
+      description,
+      status,
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
   const submitHandler = handleSubmit(async ({ email }) => {
     if (email != null && email.length > 0) {
       if (!chatExists(email) && email !== user.email) {
         await addDoc(collection(db, "chats"), { users: [user.email, email] });
-        toast({
-          title: `${email} added.`,
-          description: "Email added successfully.",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
+        resultToast("success", `${email} added.`, "Email added successfully.");
       } else if (chatExists(email) && email !== user.email) {
-        toast({
-          title: `${email} already exist.`,
-          description: "Please enter a different email.",
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        });
+        resultToast(
+          "error",
+          `${email} already exist.`,
+          "Please enter a different email."
+        );
       } else {
-        toast({
-          title: "You can't add your own email!",
-          description: "Please enter a different email.",
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        });
+        resultToast(
+          "error",
+          "You can't add your own email!",
+          "Please enter a different email."
+        );
       }
       onClose();
     }
