@@ -1,7 +1,4 @@
 import { useRouter } from "next/router";
-import { collection, addDoc } from "@firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
 import {
   Center,
   Avatar,
@@ -22,6 +19,9 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { collection, addDoc } from "@firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 import { auth } from "../../firebaseconfig";
 import { db } from "../../firebaseconfig";

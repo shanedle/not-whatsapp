@@ -1,5 +1,7 @@
-import { Flex, Text } from "@chakra-ui/react";
-import UserProfile from "../UserProfile/UserProfile";
+import { Flex, Text, Box } from "@chakra-ui/react";
+
+import ThemeToggleButton from "../ThemeToggleButton";
+import UserProfile from "../UserProfile";
 
 export default function Header() {
   return (
@@ -18,8 +20,14 @@ export default function Header() {
       <Text fontSize="2xl" fontWeight="bold">
         Not WhatsApp
       </Text>
-
-      <UserProfile />
+      <Flex alignItems="center">
+        <Box px="5">
+          <ThemeToggleButton />
+        </Box>
+        <Box>
+          <UserProfile />
+        </Box>
+      </Flex>
     </Flex>
   );
 }

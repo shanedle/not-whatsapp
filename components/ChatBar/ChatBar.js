@@ -1,6 +1,5 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { serverTimestamp, addDoc, collection } from "firebase/firestore";
 import {
   FormControl,
   InputGroup,
@@ -10,6 +9,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { FaRegSmile, FaCamera } from "react-icons/fa";
+import { serverTimestamp, addDoc, collection } from "firebase/firestore";
+
 import { db } from "../../firebaseconfig";
 
 const Picker = dynamic(() => import("emoji-picker-react"), {

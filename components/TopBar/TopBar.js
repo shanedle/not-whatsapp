@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRef } from "react";
-import { deleteDoc, doc } from "firebase/firestore";
 import {
   useDisclosure,
   Flex,
@@ -18,6 +17,7 @@ import {
   AlertDialogOverlay,
 } from "@chakra-ui/react";
 import { FaArrowLeft, FaTrashAlt } from "react-icons/fa";
+import { deleteDoc, doc } from "firebase/firestore";
 
 import { db } from "../../firebaseconfig";
 

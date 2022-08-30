@@ -4,8 +4,9 @@ import Head from "next/head";
 import { ChakraProvider, Spinner, Center } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import Login from "../components/Login/Login";
 import { auth } from "../firebaseconfig";
+
+import Login from "../components/Login/Login";
 
 export default function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
