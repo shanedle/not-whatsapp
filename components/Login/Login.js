@@ -38,19 +38,13 @@ export default function Login() {
         <title>Login</title>
       </Head>
 
-      <Center h="100vh">
-        <Stack
-          align="center"
-          bgColor="green"
-          p={16}
-          rounded="3xl"
-          spacing={12}
-          boxShadow="lg"
-        >
+      <Center bgColor="green" h="100vh">
+        <Stack align="center" p={16} rounded="3xl" spacing={12}>
           <FaWhatsapp size="6em" color="white" />
 
           <Button
             boxShadow="md"
+            colorScheme="whatsapp"
             onClick={() => signInWithGoogle("", { prompt: "select_account" })}
           >
             Sign in with Google
