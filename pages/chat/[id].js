@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useRef, useEffect } from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import {
   useCollectionData,
   useDocumentData,
@@ -66,18 +66,16 @@ export default function Chat() {
         <TopBar id={id} email={getRecipient(chat?.users, user)} />
 
         <Flex
-          flex={1}
           direction="column"
           pt={5}
           mx={5}
-          overflowX="scroll"
+          overflowY="scroll"
           sx={{ scrollbarWidth: "none" }}
         >
           {getMessages()}
-          <div ref={bottomOfChat}></div>
+          <Box ref={bottomOfChat}></Box>
         </Flex>
-
-        <Flex flex={1}>
+        <Flex>
           <ChatBar id={id} user={user} />
         </Flex>
       </Flex>

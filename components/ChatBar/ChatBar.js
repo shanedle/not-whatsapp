@@ -62,7 +62,6 @@ export default function ChatBar({ id, user }) {
             left: "0",
             bottom: "10px",
             backgroundColor: "#fff",
-            zIndex: "10",
           }}
         />
       )}
