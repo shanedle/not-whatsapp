@@ -13,8 +13,8 @@ import { db, auth } from "../../firebaseconfig";
 
 import getRecipient from "../../utils/getRecipient";
 
-import TopBar from "../../components/TopBar/TopBar";
-import ChatBar from "../../components/ChatBar/ChatBar";
+import TopBar from "../../components/TopBar";
+import ChatBar from "../../components/ChatBar";
 
 export default function Chat() {
   const router = useRouter();

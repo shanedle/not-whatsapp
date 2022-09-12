@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "../firebaseconfig";
 
-import Login from "../components/Login/Login";
+import Login from "../components/Login";
 
 export default function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
